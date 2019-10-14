@@ -54,4 +54,5 @@ async def on_message(message):
                     break
                 i += 1
 
-client.run("NjMyNDQ1NTA2Nzg1NjQwNDQ4.XaR71A.2T_qJ6DohRCXr-MX05p7U60V9xE")
+access_token = os.environ["BOT_TOKEN]
+client.run(access_token)
