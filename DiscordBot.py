@@ -3,6 +3,7 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import requests
+import os
 
 client = discord.Client()
 
@@ -27,5 +28,5 @@ async def on_message(message):
 
 
 
-
-client.run("NjMyNDQ1NTA2Nzg1NjQwNDQ4.XaSGNQ.bcXgqigVVFUthAmmWzTmah2xx5Q")
+access_token = os.environ["BOT_TOKEN"]
+client.run(access_token)
