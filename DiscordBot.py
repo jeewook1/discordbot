@@ -1,5 +1,9 @@
 import discord
 import os
+import re
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import requests
 
 client = discord.Client()
 
@@ -31,6 +35,15 @@ async def on_message(message):
             await author.remove_roles(role)
             await message.channel.send('뮤트해제 완료')
 
+        if message.content.startswith('/aa'):
+            html = requests.get('https://www.naver.com/').text
+            soup = BeautifulSoup(html, 'html.parser')
+
+        title_list = soup.select('.PM_CL_realtimeKeyword_rolling span[class*=ah_k]')
+
+        for idx, title in enumerate(title_list, 1):
+           print(idx, title.text)
+            
         if message.content.startswith('/경고'):
             author = message.guild.get_member(int(message.content[4:22]))
             file = openpyxl.load_workbook("경고.xlsx")
