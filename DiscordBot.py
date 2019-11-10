@@ -60,13 +60,6 @@ async def on_message(message):
                     break
                 i += 1
                 
-                    if message.content.startswith('/실검'):
-
-       html = urlopen("https://www.naver.com/")
-       soup = BeautifulSoup(html, "html.parser").text
-       q = str(soup).split('급상승')[1].replace('\n\n\n\n','\n').replace('검색어 검색어\n','')
-       await message.channel.send(q)
-
 
     if message.content.startswith('/서버상태'):
 
