@@ -1,5 +1,5 @@
 import discord
-import openyxml
+import openpyxl
 import os
 
 client = discord.Client()
