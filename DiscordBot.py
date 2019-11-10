@@ -1,5 +1,9 @@
 import discord
 import openpyxl
+import re
+import requests
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 import os
 
 client = discord.Client()
