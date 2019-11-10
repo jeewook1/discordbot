@@ -3,6 +3,8 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import requests
+import openpyxl
+import os
 
 client = discord.Client()
 
@@ -77,4 +79,6 @@ async def on_message(message):
        map = a.split('2Map')[1].split('Career')[0]
 
        await message.channel.send('[Farming 서버 상태]\n\n상태: Online\n버전: '+version+'\n이름: '+name+'\n비밀번호: '+password+'\n맵: '+map+'\n\n현재 온라인 플레이어\n(개발중)')
-client.run("NjMyNDQ1NTA2Nzg1NjQwNDQ4.XcdkXw.SbzUY7MeHvZtv0qS4Q1TFsC__pE")
+
+        access_token = os.environ["BOT_TOKEN"]
+        client.run(access_token)
