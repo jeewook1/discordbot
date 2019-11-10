@@ -1,6 +1,4 @@
 import discord
-import re
-import requests
 import openpyxl
 import os
 
