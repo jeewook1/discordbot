@@ -1,7 +1,5 @@
 import discord
 import re
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 import requests
 import openpyxl
 import os
