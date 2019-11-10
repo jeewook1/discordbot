@@ -1,4 +1,5 @@
 import discord
+import openyxml
 import os
 
 client = discord.Client()
