@@ -8,16 +8,17 @@ import os
 
 client = discord.Client()
 
+
 @client.event
 async def on_ready():
     print(client.user.id)
     print('ready')
-    game =  discord.Game("파밍봇")
+    game = discord.Game("파밍봇")
     await client.change_presence(status=discord.Status.online, activity=game)
+
 
 @client.event
 async def on_message(message):
-
     if message.content.startswith('/도움말'):
         await message.channel.send('안녕하세요 파밍봇입니다!\n파밍봇의 명령어는 다음과 같습니다.\n\n - 추가예정')
 
@@ -59,19 +60,21 @@ async def on_message(message):
                     await message.channel.send('경고를 1회 받았습니다.')
                     break
                 i += 1
-                
 
     if message.content.startswith('/서버상태'):
+            html = urlopen("http://45.35.98.9:8100/index.html?login=true&username=admin&password=CrqXN2NX")
+            soup = BeautifulSoup(html, "html.parser")
+            a = str(soup.text)
+            line = a.split('Resource Monitor')[0].split('JOURNAL')[1]
 
-       html = urlopen("http://45.35.98.9:8100/index.html?login=true&username=admin&password=CrqXN2NX")
-       soup = BeautifulSoup(html, "html.parser").text
-       a = str(soup)
-       version = a.split('Configuration')[1].split('Server Game')[0].split('Game')[1]
-       name = a.split('Game Name')[1].split('Administrator')[0]
-       password = a.split('Game Password')[1].split('Savegame')[0]
-       map = a.split('2Map')[1].split('Career')[0]
+            if line != "ONLINE":
+                version = a.split('Configuration')[1].split('Server Game')[0].split('Game')[1]
+                name = a.split('Game Name')[1].split('Administrator')[0]
+                password = a.split('Game Password')[1].split('Savegame')[0]
+                maps = a.split('2Map')[1].split('Career')[0]
+                await message.channel.send('[Farming 서버 상태]\n\n상태: Online\n버전: ' + version + '\n이름: ' + name + '\n비밀번호: ' + password + '\n맵: ' + maps + '\n\n현재 온라인 플레이어\n(개발중)\n\n※ 현재 오류로 서버가 Offline일 경우 아무 메세지도 표시되지 않습니다.')
+            else:
+                await message.channel.send('[Farming 서버 상태]\n\n상태: Offline')
 
-       await message.channel.send('[Farming 서버 상태]\n\n상태: Online\n버전: '+version+'\n이름: '+name+'\n비밀번호: '+password+'\n맵: '+map+'\n\n현재 온라인 플레이어\n(개발중)')
-    
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
