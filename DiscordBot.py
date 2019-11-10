@@ -72,8 +72,6 @@ async def on_message(message):
        map = a.split('2Map')[1].split('Career')[0]
 
        await message.channel.send('[Farming 서버 상태]\n\n상태: Online\n버전: '+version+'\n이름: '+name+'\n비밀번호: '+password+'\n맵: '+map+'\n\n현재 온라인 플레이어\n(개발중)')
-    else:
-        await message.channel.send('dd')
     
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
